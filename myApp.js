@@ -1,10 +1,21 @@
 require('dotenv').config();
+let mongoose = require('mongoose')
+mongoose.connect(process.env.MONGO_URI)
+//Create a Schema or Model
+let personSchema = new mongoose.Schema({
+  name:String, age: Number, favoriteFoods:[String]
+});
 
 
-let Person;
+
+
+
+
+let Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const martin = new Person({name:'martin', age: 24, favoriteFoods:['sushi']});
+  // done(null /*, data*/);
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
